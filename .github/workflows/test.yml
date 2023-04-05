@@ -1,0 +1,27 @@
+name: Test Action
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  test-broker:
+    name: Test grafana Docker image version [${{ matrix.version }}]
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        version: ['8.2.6', '8.5.22', '9.4.7', 'latest']
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Start grafana
+        uses: ./
+        with:
+          version: ${{ matrix.version }}
