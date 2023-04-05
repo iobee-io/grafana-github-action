@@ -51,7 +51,7 @@ if [ -n "$GF_AUTH_GRAFANA_API_KEY" ]; then
 fi
 
 
-docker_run="$docker_run grafana:$VERSION"
+docker_run="$docker_run grafana/grafana:$VERSION"
 
 echo "$docker_run"
 sh -c "$docker_run"
